@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Registro Civil de Mascotas — República de Chile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="folio-tape"></div>
+
+  <header class="masthead">
+    <div class="masthead__emblem" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="46" height="46">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M32 14c-6 6-14 8-14 8s0 14 14 24c14-10 14-24 14-24s-8-2-14-8z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="32" cy="30" r="4" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="masthead__text">
+      <p class="masthead__eyebrow">República de Chile · Servicio de Registro Civil</p>
+      <h1>Registro de Mascotas</h1>
+    </div>
+    <div class="masthead__folio" id="folioCount">— inscripciones</div>
+  </header>
+
+  <main class="sheet">
+
+    <!-- Estado de conexión / errores globales -->
+    <div id="banner" class="banner" role="alert" hidden></div>
+
+    <section class="panel panel--form" aria-labelledby="form-title">
+      <div class="panel__label">Formulario N.º 1</div>
+      <h2 id="form-title">Inscribir nueva mascota</h2>
+      <form id="formInscribir" novalidate>
+        <div class="field">
+          <label for="inputNombre">Nombre de la mascota</label>
+          <input id="inputNombre" name="nombre" type="text" placeholder="Ej: Firulais" autocomplete="off" />
+          <span class="field__error" id="errNombre"></span>
+        </div>
+        <div class="field">
+          <label for="inputRut">RUT del dueño/a</label>
+          <input id="inputRut" name="rut" type="text" placeholder="Ej: 12.345.678-5" autocomplete="off" />
+          <span class="field__error" id="errRut"></span>
+        </div>
+        <button type="submit" class="btn btn--primary">
+          <span>Timbrar inscripción</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="panel panel--search" aria-labelledby="search-title">
+      <div class="panel__label">Formulario N.º 2</div>
+      <h2 id="search-title">Consultar registro</h2>
+      <form id="formBuscar" class="search-form" novalidate>
+        <div class="field field--inline">
+          <label for="filtroTipo">Buscar por</label>
+          <select id="filtroTipo" name="filtroTipo">
+            <option value="todas">Todas las mascotas</option>
+            <option value="nombre">Nombre de la mascota</option>
+            <option value="rut">RUT del dueño/a</option>
+          </select>
+        </div>
+        <div class="field field--inline" id="campoValorBusqueda">
+          <label for="inputBusqueda">Valor</label>
+          <input id="inputBusqueda" type="text" placeholder="Ej: Firulais" disabled />
+        </div>
+        <button type="submit" class="btn btn--secondary">Consultar</button>
+      </form>
+    </section>
+
+    <section class="panel panel--registry" aria-labelledby="registry-title">
+      <div class="panel__label">Libro de Registro</div>
+      <h2 id="registry-title">Mascotas inscritas</h2>
+
+      <div id="listaEstado" class="lista-estado" hidden></div>
+
+      <table class="registry-table" id="tablaMascotas">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>RUT del dueño/a</th>
+            <th class="col-acciones">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyMascotas">
+        </tbody>
+      </table>
+    </section>
+
+    <section class="panel panel--danger" aria-labelledby="danger-title">
+      <div class="panel__label">Formulario N.º 3</div>
+      <h2 id="danger-title">Eliminación masiva por RUT</h2>
+      <p class="panel__hint">Elimina todas las mascotas asociadas a un mismo RUT.</p>
+      <form id="formEliminarRut" class="search-form" novalidate>
+        <div class="field field--inline">
+          <label for="inputRutEliminar">RUT del dueño/a</label>
+          <input id="inputRutEliminar" type="text" placeholder="Ej: 12.345.678-5" autocomplete="off" />
+        </div>
+        <button type="submit" class="btn btn--danger">Eliminar todas</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="colophon">
+    Servicio conectado a <code id="apiBaseLabel">http://localhost:3000</code>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

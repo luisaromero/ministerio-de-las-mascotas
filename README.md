@@ -20,7 +20,4 @@ entries — all through a simple interface connected to a custom Node.js API.
 - **Express**
 - **Axios**
 - **HTML / CSS**
-  <<<<<<< HEAD
-- # **Render** (deployment)
-- **Render** (deploy)
-  > > > > > > > 7d338fa45f6118f6806819e8ffa439259b1f4421
+- **Render** (deployment)
